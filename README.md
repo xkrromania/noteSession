@@ -1,2 +1,0 @@
-# noteSession
-Created with CodeSandbox

@@ -1,0 +1,9 @@
+.timer {
+  margin: 4px 0;
+  padding: 0 1rem;
+  font-size: 0.8rem;
+  text-align: left;
+  &.timer-digits {
+    font-family: monospace;
+  }
+}

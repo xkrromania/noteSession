@@ -1,0 +1,51 @@
+@import "./variables.scss";
+
+.btn {
+  box-shadow: 0 5px 5px -5px rgba(#000, 0.4);
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  border-radius: $border-radius-width;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  &:hover,
+  &:focus {
+    animation: bounce 1s;
+  }
+  &:disabled {
+    opacity: 0.5;
+  }
+  &.primary {
+    background: $btn--primary;
+    &:hover,
+    &:focus {
+      background: darken($btn--primary, 2%);
+    }
+    &:active {
+      background: darken($btn--primary, 5%);
+    }
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  60%,
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  40% {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+
+  80% {
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
+}
