@@ -7,11 +7,10 @@ let noteService = {
    * @param {object} note - The note to be saved
    */
   save: function(note) {
-    const parsedNote = JSON.stringify(note);
-    localStorage.setItem("note", parsedNote);
+    localStorage.setItem("note", note);
   },
-  get: function(key) {
-    localStorage.getItem(key);
+  get: function() {
+    return localStorage.getItem("note");
   }
 };
 
