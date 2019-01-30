@@ -31,11 +31,10 @@ describe("Service: noteService", () => {
       content: "test"
     };
     jest.spyOn(window.localStorage, "setItem");
-    noteService.save(note);
-    const parsedNote = JSON.stringify(note);
-    expect(localStorage.setItem).toHaveBeenCalledWith("note", parsedNote);
+    noteService.save(note.content);
+    expect(localStorage.setItem).toHaveBeenCalledWith("note", note.content);
   });
-  test("It can get a note using a key", () => {
+  test("It can get the saved note", () => {
     jest.spyOn(window.localStorage, "getItem");
     noteService.get();
     expect(localStorage.getItem).toHaveBeenCalledWith("note");
