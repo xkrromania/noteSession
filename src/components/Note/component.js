@@ -21,9 +21,7 @@ class Note extends Component {
 
       event.target.selectionStart = event.target.selectionEnd = start + 1;
 
-      this.setState({
-        content: newContent
-      });
+      this.updateNote(newContent);
     }
   };
 

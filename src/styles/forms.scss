@@ -1,0 +1,33 @@
+.form-group {
+  padding: 12px 20px;
+  display: flex;
+  justify-content: left;
+  &.timer-settings {
+    background: lighten($btn--primary, 45%);
+  }
+}
+.form-input {
+  border: 2px solid #ececec;
+  border-radius: $border-radius-width;
+  padding: 4px 8px;
+  margin: 0 8px;
+  outline: none;
+  &.timer-input {
+    font-family: monospace;
+  }
+  &:valid {
+    border: 2px solid lighten($btn--primary, 40%);
+  }
+  &:invalid {
+    border: 2px solid #ffb6b6;
+  }
+}
+.form-label {
+  padding: 10px 0px;
+}
+
+@media only screen and (max-width: 768px) {
+  .form-group {
+    justify-content: center;
+  }
+}

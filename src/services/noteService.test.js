@@ -37,7 +37,7 @@ describe("Service: noteService", () => {
   });
   test("It can get a note using a key", () => {
     jest.spyOn(window.localStorage, "getItem");
-    noteService.get(1);
-    expect(localStorage.getItem).toHaveBeenCalledWith(1);
+    noteService.get();
+    expect(localStorage.getItem).toHaveBeenCalledWith("note");
   });
 });

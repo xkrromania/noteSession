@@ -8,6 +8,8 @@ class Timer extends Component {
 
     if (time < 1) {
       timeMessage = "time has expired";
+    } else if (time === Infinity) {
+      timeMessage = "infinite";
     } else {
       timeMessage = time + " seconds";
     }

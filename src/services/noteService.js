@@ -10,8 +10,8 @@ let noteService = {
     const parsedNote = JSON.stringify(note);
     localStorage.setItem("note", parsedNote);
   },
-  get: function(key) {
-    localStorage.getItem(key);
+  get: function() {
+    return JSON.parse(localStorage.getItem("note"));
   }
 };
 
