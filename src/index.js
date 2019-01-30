@@ -11,7 +11,7 @@ import noteService from "./services/noteService";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    const noteContent = noteService.get();
+    const noteContent = noteService.get() || "";
 
     this.state = {
       content: noteContent,
