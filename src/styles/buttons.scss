@@ -3,14 +3,15 @@
 .btn {
   box-shadow: 0 5px 5px -5px rgba(#000, 0.4);
   border: none;
-  color: white;
-  padding: 12px 20px;
   border-radius: $border-radius-width;
+  color: white;
   cursor: pointer;
+  display: inline-block;
+  outline: none;
+  padding: 12px 20px;
   transition: all 0.5s ease;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   &:hover,
   &:focus {
     animation: bounce 1s;
@@ -28,6 +29,36 @@
       background: darken($btn--primary, 5%);
     }
   }
+  &.link {
+    animation: none;
+    box-shadow: none;
+    background: none;
+    color: $btn--link;
+    &:hover,
+    &:focus {
+      color: darken($btn--link, 2%);
+      text-decoration: underline;
+    }
+    &:active {
+      color: darken($btn--link, 5%);
+    }
+  }
+  & + .btn {
+    margin-left: 8px;
+  }
+  &.writing-action {
+    position: fixed;
+    right: 8px;
+    top: 12px;
+    background: $btn--writing;
+    &:hover,
+    &:focus {
+      background: lighten($btn--writing, 10%);
+    }
+    &:active {
+      background: lighten($btn--writing, 15%);
+    }
+  }
 }
 
 @keyframes bounce {
@@ -40,12 +71,12 @@
   }
 
   40% {
-    -webkit-transform: translateY(-10px);
-    transform: translateY(-10px);
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
   }
 
   80% {
-    -webkit-transform: translateY(-5px);
-    transform: translateY(-5px);
+    -webkit-transform: translateY(-3px);
+    transform: translateY(-3px);
   }
 }

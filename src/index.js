@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import ReactDOM from "react-dom";
 import "./styles/main.scss";
 import "./styles/reset.scss";
@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     const noteContent = noteService.get();
-    console.dir(noteContent);
+
     this.state = {
       content: noteContent,
       isFormDisabled: true,
@@ -44,59 +44,107 @@ class App extends React.Component {
     this.interval = setInterval(this.tick, 1000);
   };
 
+  startInfiniteTimer = () => {
+    this.setState({
+      content: "",
+      isTimerRunning: true,
+      isFormDisabled: false,
+      timerCurrentCount: Infinity
+    });
+    this.interval = setInterval(this.tick, 1000);
+  };
+
   tick = () => {
     let currentCount = this.state.timerCurrentCount - 1;
     if (currentCount < 1) {
       this.endTimer();
-      this.saveNote();
     }
     this.setState({ timerCurrentCount: currentCount });
   };
 
   endTimer = () => {
     clearInterval(this.interval);
+    noteService.save(this.state.content);
     this.setState({
       isTimerRunning: false,
       isFormDisabled: true
     });
   };
 
-  saveNote = () => {
-    noteService.save(this.state.content);
+  resetTimer = () => {
+    this.setState({ timerCurrentCount: 30 });
+    this.endTimer();
   };
 
   render() {
     let placeholderMessage = "Write a note...";
     const timerSettings = (
-      <div className="form-group timer-settings">
-        <label htmlFor="timerInput" className="form-label">
-          Seconds
-        </label>
-        <input
-          className="form-input timer-input"
-          type="number"
-          min="0"
-          max="3600"
-          step="5"
-          name="timerInput"
-          defaultValue={this.state.timerSetOn}
-          disabled={this.state.isTimerRunning}
-          onChange={this.handleStartTimeChange}
-        />
-        <button
-          className="btn primary"
-          disabled={this.state.isTimerRunning}
-          onClick={this.startTimer}
-        >
-          <span>Start</span>
-        </button>
-      </div>
+      <Fragment>
+        {!this.state.isTimerRunning && (
+          <div className="timer-settings">
+            <div className="form-group">
+              <label htmlFor="timerInput" className="form-label">
+                Seconds
+              </label>
+              <input
+                className="form-input timer-input"
+                type="number"
+                min="0"
+                max="3600"
+                step="5"
+                name="timerInput"
+                defaultValue={this.state.timerSetOn}
+                disabled={this.state.isTimerRunning}
+                onChange={this.handleStartTimeChange}
+              />
+              <button
+                className="btn primary"
+                disabled={this.state.isTimerRunning}
+                onClick={this.startTimer}
+              >
+                <span>Start</span>
+              </button>
+            </div>
+            <button
+              className="btn writing-action"
+              disabled={this.state.isTimerRunning}
+              onClick={this.startInfiniteTimer}
+            >
+              <span>Just write</span>
+            </button>
+          </div>
+        )}
+      </Fragment>
     );
-    const timerDisplay = <Timer time={this.state.timerCurrentCount} />;
+    const timerDisplay = (
+      <Fragment>
+        {this.state.isTimerRunning &&
+          this.state.timerCurrentCount !== Infinity && (
+            <Timer time={this.state.timerCurrentCount} />
+          )}
+      </Fragment>
+    );
+
+    const resetButton = (
+      <Fragment>
+        {this.state.timerCurrentCount === Infinity && (
+          <button
+            className="btn writing-action"
+            disabled={!this.state.isTimerRunning}
+            onClick={this.resetTimer}
+          >
+            <span>End Writing</span>
+          </button>
+        )}
+      </Fragment>
+    );
+
     return (
       <div className="App">
-        {!this.state.isTimerRunning && timerSettings}
-        {this.state.isTimerRunning && timerDisplay}
+        {timerSettings}
+        {timerDisplay}
+        {resetButton}
+
         <Note
           content={this.state.content}
           handleChange={this.handleChange}
