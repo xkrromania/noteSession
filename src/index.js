@@ -11,17 +11,22 @@ import noteService from "./services/noteService";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    const noteContent = noteService.get() || "";
 
     this.state = {
-      content: noteContent,
+      content: "",
       isFormDisabled: true,
       timerSetOn: 30,
       timerCurrentCount: null,
-      isTimerRunning: false
+      isTimerRunning: false,
+      isLoaded: false
     };
 
     this.interval = null;
+  }
+
+  componentDidMount() {
+    const noteContent = noteService.get() || "";
+    this.setState({ content: noteContent, isLoaded: true });
   }
 
   handleChange = content => {
@@ -144,13 +149,14 @@ class App extends React.Component {
         {timerSettings}
         {timerDisplay}
         {resetButton}
-
-        <Note
-          content={this.state.content}
-          handleChange={this.handleChange}
-          isDisabled={this.state.isFormDisabled}
-          placeholderMessage={placeholderMessage}
-        />
+        {this.state.isLoaded && (
+          <Note
+            content={this.state.content}
+            handleChange={this.handleChange}
+            isDisabled={this.state.isFormDisabled}
+            placeholderMessage={placeholderMessage}
+          />
+        )}
       </div>
     );
   }

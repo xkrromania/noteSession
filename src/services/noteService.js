@@ -10,7 +10,7 @@ let noteService = {
     localStorage.setItem("note", note);
   },
   get: function() {
-    return JSON.parse(localStorage.getItem("note"));
+    return localStorage.getItem("note") || '""';
   }
 };
 
