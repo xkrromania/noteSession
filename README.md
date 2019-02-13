@@ -6,4 +6,5 @@ Inspired from : https://medium.com/swlh/the-30-second-habit-with-a-lifelong-impa
 
 ## Learning tool
 [![Netlify Status](https://api.netlify.com/api/v1/badges/07d7678c-06e9-40ae-a175-72303609a0d0/deploy-status)](https://app.netlify.com/sites/notesession/deploys)
+
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
