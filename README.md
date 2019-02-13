@@ -8,7 +8,7 @@ Inspired from : https://medium.com/swlh/the-30-second-habit-with-a-lifelong-impa
 [![Netlify Status](https://api.netlify.com/api/v1/badges/07d7678c-06e9-40ae-a175-72303609a0d0/deploy-status)](https://app.netlify.com/sites/notesession/deploys)
 
 ## Source Code
-https://codesandbox.io/s/github/xkrromania/noteSession
+[https://codesandbox.io/s/github/xkrromania/noteSession](CodeSandbox)
 
 ## Learning tool
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
