@@ -4,8 +4,8 @@ import "./styles/main.scss";
 import "./styles/reset.scss";
 import "./styles/typography.scss";
 import "./styles/buttons.scss";
-import Note from "./components/Note/component";
-import Timer from "./components/Timer/component";
+import Note from "./components/Note/";
+import Timer from "./components/Timer/";
 import noteService from "./services/noteService";
 
 class App extends React.Component {

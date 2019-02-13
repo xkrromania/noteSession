@@ -1,15 +1,41 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
 .note {
   padding: 1rem;
-  width: 100%;
   border: none;
   font-family: "Thasadith", sans-serif;
   line-height: 1.5rem;
   font-size: 1rem;
   outline: none;
-  height: 100%;
   overflow-y: hidden;
+  resize: none;
+  width: 100%;
   &:disabled {
-    background: linear-gradient(#fcfcff, #ffffff);
-    height: 90%;
+    background: #fff4a3;
+    border-radius: 4px;
+  }
+}
+
+.content {
+  background: #fff8c3;
+  border-radius: 4px;
+  display: block;
+  padding: 1em 1em 2em;
+  width: 100%;
+  white-space: pre-wrap;
+  article {
+    margin-top: 1em;
+    text-align: left;
+  }
+}
+
+.blank-state {
+  margin-top: 10%;
+  a {
+    display: block;
+    margin-top: 1em;
   }
 }
