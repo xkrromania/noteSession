@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { expect } from "chai";
 
-import Note from "./component";
+import Note from "./";
 
 describe("Note Component", () => {
   it("It renders the component", () => {

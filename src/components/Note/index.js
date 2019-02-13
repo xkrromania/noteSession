@@ -1,10 +1,20 @@
 import React, { Component } from "react";
+import Content from "./Content";
 import "./style.scss";
 
 class Note extends Component {
   constructor(props) {
     super(props);
     this.INDENT_SPACE = "    ";
+    this.textareaRef = React.createRef();
+
+    this.state = {
+      textareaHeight: ""
+    };
+  }
+
+  componentDidMount() {
+    this.setState({ textareaHeight: this.textareaRef.scrollHeight + "px" });
   }
 
   addTabIndent = event => {
@@ -35,6 +45,7 @@ class Note extends Component {
 
   handleChange = event => {
     let value = this.replaceElements(event.target.value);
+    this.setState({ textareaHeight: Number(event.target.scrollHeight) + "px" });
     this.updateNote(value);
   };
 
@@ -43,17 +54,31 @@ class Note extends Component {
   };
 
   render() {
-    return (
+    const { content, isDisabled, placeholderMessage } = this.props;
+
+    const { textareaHeight } = this.state;
+    const textareaStyle = { height: textareaHeight };
+    const textareaRender = !isDisabled && (
       <textarea
-        ref={c => (this._textarea = c)}
-        placeholder={this.props.placeholderMessage}
+        ref={this.textareaRef}
+        placeholder={placeholderMessage}
         autoFocus={true}
         className="note"
-        disabled={this.props.isDisabled}
-        value={this.props.content}
+        style={textareaStyle}
+        disabled={isDisabled}
+        value={content}
         onKeyDown={this.addTabIndent}
         onChange={this.handleChange}
       />
+    );
+
+    const contentRender = isDisabled && <Content content={content} />;
+
+    return (
+      <div className="container">
+        {textareaRender}
+        {contentRender}
+      </div>
     );
   }
 }
